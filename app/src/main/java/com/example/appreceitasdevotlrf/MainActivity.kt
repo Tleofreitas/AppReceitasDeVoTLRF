@@ -27,15 +27,24 @@ class MainActivity : AppCompatActivity() {
         rvReceitas = findViewById(R.id.rv_receitas)
 
         val lista = listOf(
-            Receita("Escondidinho de Camarão", "45 min", R.drawable.carne1),
-            Receita("Panqueca de Carne Moída", "35 min", R.drawable.carne2),
-            Receita("Rocambole de Carne Moída", "60 min", R.drawable.carne3),
-            Receita("Escondidinho de Carne Seca", "55 min", R.drawable.carne4),
+            Receita("Escondidinho de Camarão", "45 min", R.drawable.carne1,
+                listOf("1 KG Camarão", "Manteiga", "Alho", "Cebola")
+            ),
+            Receita("Panqueca de Carne Moída", "35 min", R.drawable.carne2,
+                listOf("1 KG Carne Moida", "Alho", "Cebola")
+            ),
+            Receita("Rocambole de Carne Moída", "60 min", R.drawable.carne3,
+                listOf("Carne a vontade", "Manteiga", "Alho", "Cebola")
+            ),
+            Receita("Escondidinho de Carne Seca", "55 min", R.drawable.carne4,
+                listOf("1 KG Carne Seca", "Alho", "Cebola", "Batatas")
+            ),
         )
 
         // Adapter
-        receitasAdapter = ReceitasAdapter{
+        receitasAdapter = ReceitasAdapter{ receita ->
             val intent = Intent(this, DetalhesActivity::class.java)
+            intent.putExtra("receita", receita)
             startActivity( intent )
         }
         rvReceitas.adapter = receitasAdapter
